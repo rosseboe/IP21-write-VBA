@@ -2,7 +2,7 @@ Private conn As New ADODB.Connection
 Private rs As Recordset
 
 
-Private Sub
+Private Sub testWriter
 
     conn = CreateObject("ADODB.Connection")
     conn.Open ("IP21") ' ODBC DSN 
