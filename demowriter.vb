@@ -21,15 +21,16 @@ End Sub
 
 
 Private Function WriteValAtTime(vTag, vTime, vValue)
-  On Error GoTo errorhandler:
-  vV1 = CStr(vValue)
-  vT1 = Format(vTime, "dd-mmm-yy hh:mm:ss")
-
-  Set rs = conn.Execute("INSERT INTO " + vTag + "(IP_TREND_VALUE, IP_TREND_TIME, IP_TREND_QSTATUS) VALUES ('" + vV1 + "','" + vT1 + "','GOOD')")
-
-  Exit Function
-  errorhandler:
+    On Error GoTo errorhandler:
+    vV1 = CStr(vValue)
+    vT1 = Format(vTime, "yyyy-mm-dd HH:mm:ss")
+        
+    Set rs = conn.Execute("INSERT INTO " + vTag + " (IP_TREND_VALUE, IP_TREND_TIME, IP_TREND_QSTATUS) VALUES ('" + vV1 + "',timestamp'" + vT1 + "','GOOD')")
+    
+    Exit Function
+          
+    errorhandler:
     MsgBox (Err.Description)
-End Function
+  End Function
     
     
