@@ -39,9 +39,9 @@ End Sub
     Private Function WriteValAtTime(vTag, vTime, vValue)
         On Error GoTo errorhandler:
         vV1 = CStr(vValue)
-        vT1 = Format(vTime, "dd-mmm-yy hh:mm:ss")
+        vT1 = Format(vTime, "yyyy-mmm-dd HH:mm:ss")
         
-        Set rs = conn.Execute("INSERT INTO " + vTag + "(IP_TREND_VALUE, IP_TREND_TIME, IP_TREND_QSTATUS) VALUES ('" + vV1 + "','" + vT1 + "','GOOD')")
+        Set rs = conn.Execute("INSERT INTO " + vTag + "(IP_TREND_VALUE, IP_TREND_TIME, IP_TREND_QSTATUS) VALUES ('" + vV1 + "',timestamp'" + vT1 + "','GOOD')")
         
         Exit Function
 errorhandler:
@@ -54,10 +54,10 @@ Private Function UpdateInputValue(vTag, vTime, vValue)
         
         On Error GoTo errorhandler:
         vV1 = CStr(vValue)
-        vT1 = Format(vTime, "dd-mmm-yy hh:mm:ss")
+        vT1 = Format(vTime, "yyyy-mmm-dd HH:mm:ss")
         
         Dim query As String
-        query = "UPDATE " + vTag + " SET IP_INPUT_VALUE ='" + vV1 + "', IP_INPUT_TIME = '" + vT1 + "', QSTATUS(IP_INPUT_VALUE) = 'GOOD'"
+        query = "UPDATE " + vTag + " SET IP_INPUT_VALUE ='" + vV1 + "', IP_INPUT_TIME = timestamp'" + vT1 + "', QSTATUS(IP_INPUT_VALUE) = 'GOOD'" 
         
         Set rs = conn.Execute(query)
         
